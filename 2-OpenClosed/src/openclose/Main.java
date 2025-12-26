@@ -16,6 +16,9 @@ public class Main {
 
     static void calculateSalaryMonthly(List<Object> employees) {
 
+        double totalPayment = 0;
+        int totalEmployees = employees.size();
+
         for (Object employee : employees) {
 
             if (employee instanceof EmployeeFullTime) {
@@ -25,10 +28,11 @@ public class Main {
                 double salary = hourValue * employeeFullTime.getHoursWorked();
 
                 System.out.printf(
-                    "Empleado: %s, Pago: %.1f%n",
-                    employeeFullTime.getFullname(),
-                    salary
-                );
+                        "Empleado: %s, Pago: %.1f%n",
+                        employeeFullTime.getFullname(),
+                        salary);
+
+                totalPayment += salary;
 
             } else {
 
@@ -43,11 +47,16 @@ public class Main {
                 }
 
                 System.out.printf(
-                    "Empleado: %s, Pago: %.1f%n",
-                    employeePartTime.getFullname(),
-                    salary
-                );
+                        "Empleado: %s, Pago: %.1f%n",
+                        employeePartTime.getFullname(),
+                        salary);
+
+                totalPayment += salary;
             }
         }
+
+        System.out.println("----------------------------");
+        System.out.println("Total de empleados: " + totalEmployees);
+        System.out.println("Pago total mensual: " + totalPayment);
     }
 }
